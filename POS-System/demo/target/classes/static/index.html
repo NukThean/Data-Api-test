@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product List</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <h1>Product List</h1>
+
+    <div class="action-buttons">
+      <button class="addProductButton">Add Product</button>
+      <button class="updateProductButton">Update Product</button>
+      <button class="deleteProductButton">Delete Product</button>
+    </div>
+
+    <form class="deleteFormhidden">
+      <label for="deleteproductCode">Product ID: </label>
+      <input type="text" class="deleteproductId" required />
+      <button type="submit" class="deleteButton">Delete</button>
+    </form>
+
+    <form class="productFormhidden">
+      <label for="productCode">Code:</label>
+      <input type="text" class="productCode" required />
+
+      <label for="productName">Name:</label>
+      <input type="text" class="productName" required />
+
+      <label for="productQuantity">Quantity:</label>
+      <input type="text" class="productQuantity" required />
+
+      <label for="productCategory">Category:</label>
+      <input type="text" class="productCategory" required />
+
+      <label for="productDescription">Description:</label>
+      <textarea class="productDescription" rows="4" cols="50"></textarea>
+
+      <label for="costPrice">Cost Price:</label>
+      <input type="text" class="costPrice" required />
+
+      <label for="sellingPrice">Selling Price:</label>
+      <input type="text" class="sellingPrice" required />
+
+      <label for="isActive">Is Active:</label>
+      <input type="boolean" class="isActive" required />
+
+      <label for="vendor">Vendor ID:</label>
+      <input type="vendor" class="vendorId" required />
+
+      <!-- Upload file input -->
+      <label for="fileInput">Product Image:</label>
+      <input type="file" class="fileInput" />
+
+      <button type="submit" class="registerButton">Register</button>
+    </form>
+
+    <div class="response"></div>
+
+    <h2>Products</h2>
+    <div class="productList"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

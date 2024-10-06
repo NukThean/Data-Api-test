@@ -1,0 +1,102 @@
+.productForm {
+  max-width: 400px;
+}
+
+.productFormhidden {
+  display: none;
+}
+
+.deleteFormhidden{
+  display: none;
+}
+
+.deleteForm {
+  max-width: 400px;
+}
+
+.deleteForm label {
+  display: inline-block;
+  width: 100px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+.deleteForm input {
+  display: inline-block;
+  width: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+
+.productForm label {
+  display: inline-block;
+  width: 100px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+.productForm input {
+  display: inline-block;
+  width: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.productDescription {
+  width: 250px;
+  height: 100px;
+}
+
+.registerButton {
+  width: 150px;
+  height: 40px;
+  margin: 10px auto; /* Center the button horizontally */
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(100px, 1fr)
+  ); /* Responsive columns */
+  gap: 10px;
+  max-width: 600px; /* Set a maximum width for the button container */
+  margin: 0; /* Remove margin for left alignment */
+  justify-content: start; /* Align items to the left */
+}
+
+.addProductButton {
+  width: 100px; /* Set a minimum width for each button */
+  height: 40px;
+  cursor: pointer; /* Change cursor on hover */
+  text-align: center; /* Center text inside button */
+}
+
+.deleteProductButton {
+  width: 100px;
+  height: 40px;
+  cursor: pointer; /* Change cursor on hover */
+  text-align: center; /* Center text inside button */
+}
+
+.deleteButton {
+  width: 100px;
+  height: 40px;
+  cursor: pointer; /* Change cursor on hover */
+  text-align: center; /* Center text inside button */
+  color: red;
+}
+
+.updateProductButton {
+  width: 100px; /* Set a minimum width for each button */
+  height: 40px;
+  cursor: pointer; /* Change cursor on hover */
+  text-align: center; /* Center text inside button */
+}
