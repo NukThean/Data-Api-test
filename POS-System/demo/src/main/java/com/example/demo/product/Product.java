@@ -1,18 +1,26 @@
 package com.example.demo.product;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
+import java.util.List;
 import com.example.demo.vendor.Vendor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.example.demo.product_category.Category;
+import com.example.demo.sale_price.SalePrice;
+
 
 @Entity
 @Table(name = "product")
@@ -33,8 +41,9 @@ public class Product {
   @Column(name = "product_quantity", nullable = true)
   private Integer quantity;
 
-  @Column(name = "product_category", length = 100, nullable = true)
-  private String category;
+  @ManyToOne
+  @JoinColumn(name = "category_id", nullable = true)
+  private Category category;
 
   @Column(name = "product_description", length = 500, nullable = true)
   private String description;
@@ -42,8 +51,10 @@ public class Product {
   @Column(name = "cost_price", nullable = true)
   private Float costPrice;
 
-  @Column(name = "sale_price", nullable = true)
-  private Float salePrice;
+  @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+      orphanRemoval = true)
+  @JsonManagedReference // Breaks circular reference
+  private List<SalePrice> salePrices; // One product can have multiple sale prices
 
   @Column(name = "product_image_url", length = 255, nullable = true)
   private String image;
@@ -65,8 +76,8 @@ public class Product {
 
   public Product() {}
 
-  public Product(Long id, String code, String name, Integer quantity, String category,
-      String description, Float costPrice, Float salePrice, String image, Date createdAt,
+  public Product(Long id, String code, String name, Integer quantity, Category category,
+      String description, Float costPrice, List<SalePrice> salePrices, String image, Date createdAt,
       Date updatedAt, boolean isActive, Vendor vendor) {
     this.id = id;
     this.code = code;
@@ -75,7 +86,7 @@ public class Product {
     this.category = category;
     this.description = description;
     this.costPrice = costPrice;
-    this.salePrice = salePrice;
+    this.salePrices = salePrices;
     this.image = image;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
@@ -83,8 +94,8 @@ public class Product {
     this.vendor = vendor;
   }
 
-  public Product(String code, String name, Integer quantity, String category, String description,
-      Float costPrice, Float salePrice, String image, Date createdAt, Date updatedAt,
+  public Product(String code, String name, Integer quantity, Category category, String description,
+      Float costPrice, List<SalePrice> salePrices, String image, Date createdAt, Date updatedAt,
       boolean isActive, Vendor vendor) {
     this.code = code;
     this.name = name;
@@ -92,7 +103,7 @@ public class Product {
     this.category = category;
     this.description = description;
     this.costPrice = costPrice;
-    this.salePrice = salePrice;
+    this.salePrices = salePrices;
     this.image = image;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
@@ -132,11 +143,11 @@ public class Product {
     this.quantity = quantity;
   }
 
-  public String getCategory() {
+  public Category getCategory() {
     return category;
   }
 
-  public void setCategory(String category) {
+  public void setCategory(Category category) {
     this.category = category;
   }
 
@@ -156,12 +167,12 @@ public class Product {
     this.costPrice = costPrice;
   }
 
-  public Float getSalePrice() {
-    return salePrice;
+  public List<SalePrice> getSalePrices() {
+    return salePrices;
   }
 
-  public void setSalePrice(Float salePrice) {
-    this.salePrice = salePrice;
+  public void setSalePrice(List<SalePrice> salePrices) {
+    this.salePrices = salePrices;
   }
 
   public String getImage() {
@@ -208,7 +219,7 @@ public class Product {
   public String toString() {
     return "Product [id=" + id + ", name=" + name + ", quantity=" + quantity + ", category="
         + category + ", description=" + description + ", costPrice=" + costPrice + ", salePrice="
-        + salePrice + ", image=" + image + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+        + salePrices + ", image=" + image + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
         + ", isActive=" + isActive + ", vendor=" + vendor + "]";
   }
 }

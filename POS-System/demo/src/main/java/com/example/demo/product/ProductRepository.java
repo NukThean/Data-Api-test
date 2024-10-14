@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
   int countByVendorId(Long vendorId);
+
+  int countByCategoryId(Long categoryId);
 }
