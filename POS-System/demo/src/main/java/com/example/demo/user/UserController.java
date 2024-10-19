@@ -1,6 +1,8 @@
 package com.example.demo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,5 +39,31 @@ public class UserController {
   public void deleteUser(@PathVariable("userId") Long userId) {
     userService.deleteUser(userId);
   }
+
+
+  @PostMapping("login")
+  public ResponseEntity<String> loginUser(@RequestBody LoginRequest loginRequest) {
+    User user = userService.findByUsername(loginRequest.getUsername());
+
+    if (user != null) {
+      // Fetch salt value from the user entity
+      String salt = user.getSaltValue();
+      System.out.println(user + " " + salt + " " + loginRequest.getPassword());
+
+      // Verify password with salt
+      if (userService.verifyPassword(loginRequest.getPassword(), salt, user.getPassword())) {
+        return ResponseEntity.ok("Login successful");
+      }
+    }
+
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+  }
+
+  @GetMapping("login")
+  public ResponseEntity<String> getLogin() {
+    // This could be used to check if the login page or CSRF token is accessible
+    return ResponseEntity.ok("Login endpoint is working.");
+  }
+
 
 }

@@ -4,10 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product List</title>
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/styless.css" />
+    <!-- CSRF meta tags for Spring Security -->
+    <meta name="_csrf" content="${_csrf.token}" />
+    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
   </head>
   <body>
-    <h1>Product List</h1>
+
+    <div class="login-wrapper"> <!-- New wrapper for centering -->
+      <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit">Login</button>
+          <p id="error-message" class="error-message"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="product-containerHidden">
+    <h1>Product List</h>
 
     <div class="action-buttons">
       <button class="addProductButton">Add Product</button>
@@ -47,19 +70,23 @@
       <input type="boolean" class="isActive" required />
 
       <label for="vendor">Vendor ID:</label>
-      <input type="vendor" class="vendorId" required />
+      <input type="text" class="vendorId" required />
 
       <!-- Upload file input -->
-      <label for="fileInput">Product Image:</label>
+     <label for="fileInput">Product Image:</label>
       <input type="file" class="fileInput" />
 
       <button type="submit" class="registerButton">Register</button>
     </form>
 
     <div class="response"></div>
-
+     
     <h2>Products</h2>
     <div class="productList"></div>
+
+  </div>
+    
+
 
     <script src="app.js"></script>
   </body>

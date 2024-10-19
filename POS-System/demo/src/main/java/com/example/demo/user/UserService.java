@@ -19,21 +19,6 @@ public class UserService {
 
   public final UserRepository userRepository;
 
-  // Generate a random salt value
-  public String generateSalt() throws NoSuchAlgorithmException {
-    SecureRandom sr = SecureRandom.getInstance("SHA-256");
-    byte[] salt = new byte[16];
-    sr.nextBytes(salt);
-    return Base64.getEncoder().encodeToString(salt);
-  }
-
-  // Hash the password with salt and pepper
-  public String hashPassword(String rawPassword, String salt) {
-    // Combine password, salt, and pepper for hashing
-    String saltedAndPepperedPassword = rawPassword + salt + pepper;
-    return passwordEncoder.encode(saltedAndPepperedPassword);
-  }
-
   @Autowired
   public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
@@ -41,6 +26,10 @@ public class UserService {
 
   public List<User> getUsers() {
     return userRepository.findAll();
+  }
+
+  public void deleteUser(Long id) {
+    userRepository.deleteById(id);
   }
 
   public void addUser(User user) throws NoSuchAlgorithmException {
@@ -56,8 +45,33 @@ public class UserService {
     userRepository.save(user);
   }
 
-
-  public void deleteUser(Long id) {
-    userRepository.deleteById(id);
+  // Generate a random salt value
+  public String generateSalt() throws NoSuchAlgorithmException {
+    SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+    byte[] salt = new byte[16];
+    sr.nextBytes(salt);
+    return Base64.getEncoder().encodeToString(salt);
   }
+
+  // Hash the password with salt and pepper
+  public String hashPassword(String rawPassword, String salt) {
+    // Combine password, salt, and pepper for hashing
+    String saltedAndPepperedPassword = rawPassword + salt + pepper;
+    return passwordEncoder.encode(saltedAndPepperedPassword);
+  }
+
+  // Find user by username
+  public User findByUsername(String username) {
+    return userRepository.findByName(username);
+  }
+
+  // Verify the password by combining raw password, salt, and pepper, then comparing it with the
+  // stored hashed password
+  public boolean verifyPassword(String rawPassword, String salt, String hashedPassword) {
+    // Combine raw password, salt, and pepper in the same way as during hashing
+    String saltedAndPepperedPassword = rawPassword + salt + pepper;
+    // Use the password encoder to check if the hashed version matches the stored hash
+    return passwordEncoder.matches(saltedAndPepperedPassword, hashedPassword);
+  }
+
 }
