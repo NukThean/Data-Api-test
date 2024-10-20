@@ -2,6 +2,7 @@ package com.example.demo.product;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +33,16 @@ public class ProductController {
   // return new ResponseEntity<>(products, HttpStatus.OK);
   // }
 
-  @PostMapping
-  public void addProduct(@RequestBody Product product) {
-    productService.addProduct(product);
+  @PostMapping("add")
+  public void addProduct(@RequestBody ProductRequest productRequest) {
+    System.out.println("productRequest = " + productRequest);
+    System.out.println("Product code: " + productRequest.getProductCode());
+    productService.addProduct(productRequest);
+  }
+
+  @GetMapping("add")
+  public ResponseEntity<String> getProduct() {
+    return ResponseEntity.ok("getProduct endpoint is working.");
   }
 
   @DeleteMapping(path = "{productId}")

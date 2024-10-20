@@ -48,9 +48,6 @@ public class Product {
   @Column(name = "product_description", length = 500, nullable = true)
   private String description;
 
-  @Column(name = "cost_price", nullable = true)
-  private Float costPrice;
-
   @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL,
       orphanRemoval = true)
   @JsonManagedReference // Breaks circular reference
@@ -77,15 +74,14 @@ public class Product {
   public Product() {}
 
   public Product(Long id, String code, String name, Integer quantity, Category category,
-      String description, Float costPrice, List<SalePrice> salePrices, String image, Date createdAt,
-      Date updatedAt, boolean isActive, Vendor vendor) {
+      String description, List<SalePrice> salePrices, String image, Date createdAt, Date updatedAt,
+      boolean isActive, Vendor vendor) {
     this.id = id;
     this.code = code;
     this.name = name;
     this.quantity = quantity;
     this.category = category;
     this.description = description;
-    this.costPrice = costPrice;
     this.salePrices = salePrices;
     this.image = image;
     this.createdAt = createdAt;
@@ -95,14 +91,13 @@ public class Product {
   }
 
   public Product(String code, String name, Integer quantity, Category category, String description,
-      Float costPrice, List<SalePrice> salePrices, String image, Date createdAt, Date updatedAt,
-      boolean isActive, Vendor vendor) {
+      List<SalePrice> salePrices, String image, Date createdAt, Date updatedAt, boolean isActive,
+      Vendor vendor) {
     this.code = code;
     this.name = name;
     this.quantity = quantity;
     this.category = category;
     this.description = description;
-    this.costPrice = costPrice;
     this.salePrices = salePrices;
     this.image = image;
     this.createdAt = createdAt;
@@ -159,14 +154,6 @@ public class Product {
     this.description = description;
   }
 
-  public Float getCostPrice() {
-    return costPrice;
-  }
-
-  public void setCostPrice(Float costPrice) {
-    this.costPrice = costPrice;
-  }
-
   public List<SalePrice> getSalePrices() {
     return salePrices;
   }
@@ -218,8 +205,8 @@ public class Product {
   @Override
   public String toString() {
     return "Product [id=" + id + ", name=" + name + ", quantity=" + quantity + ", category="
-        + category + ", description=" + description + ", costPrice=" + costPrice + ", salePrice="
-        + salePrices + ", image=" + image + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
-        + ", isActive=" + isActive + ", vendor=" + vendor + "]";
+        + category + ", description=" + description + ", salePrice=" + salePrices + ", image="
+        + image + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", isActive=" + isActive
+        + ", vendor=" + vendor + "]";
   }
 }

@@ -1,3 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.login-group {
+  margin-bottom: 10px; /* Spacing between form groups */
+}
+
+.login-wrapper {
+  /* New class for centering the login container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height for vertical centering */
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.login-containerHidden {
+  display: none;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container .input-group {
+  margin-bottom: 15px;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #5cb85c;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #4cae4c;
+}
+
+.login-container .error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Other styles for product container and forms */
+.product-containerHidden {
+  display: none;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+
+  /* Add these properties */
+  position: absolute; /* Allows positioning it on top */
+  top: 0; /* Start from the top of the viewport */
+  left: 0; /* Align it to the left */
+  right: 0; /* Align it to the right */
+  z-index: 10; /* Set z-index to make sure it appears above other elements */
+  padding: 20px; /* Optional: Add padding for spacing */
+}
+
+/* Include other product-related styles as needed */
+
 .productForm {
   max-width: 400px;
 }
@@ -38,9 +139,18 @@
   margin-top: 10px;
   margin-bottom: 10px;
   vertical-align: middle;
+  font-size: 14px; /* Set the desired font size */
 }
 
 .productForm input {
+  display: inline-block;
+  width: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.productForm select {
   display: inline-block;
   width: 250px;
   margin-top: 10px;
@@ -100,82 +210,118 @@
   text-align: center; /* Center text inside button */
 }
 
-.login-container * {
-  margin: 0;
-  padding: 0;
+.productCategory {
+  display: inline-block;
+  width: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
 }
 
-.login-container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+/* Flexbox for input group */
+
+.input-group label {
+  margin-right: 10px; /* Spacing between the label and the button */
 }
 
-.login-containerHidden {
-  display: none;
-}
-
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.login-container .input-group {
-  margin-bottom: 15px;
-}
-
-.login-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.login-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: #5cb85c;
-  border: none;
+.moreButton {
+  background-color: #007bff; /* A blue color for the button */
   color: white;
-  border-radius: 3px;
+  border: none;
+  padding: 2px 5px; /* Small padding to make it compact */
+  margin-left: 5px;
+  margin-right: 10px;
   cursor: pointer;
+  border-radius: 3px; /* Rounded corners */
+  font-size: 12px; /* Small text size */
+  width: 30px;
+  height: 30px;
 }
 
-.login-container button:hover {
-  background-color: #4cae4c;
+.moreButton:hover {
+  background-color: #0056b3; /* Darker blue when hovered */
 }
 
-.login-container .error-message {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.product-containerHidden {
-  display: none;
-}
-
-.product-container {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px; */
-
-  font-family: Arial, sans-serif;
+.addButton {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f4;
+  flex-direction: row;
+}
+
+.input-group {
+  display: flex; /* Flexbox to align items inside this div */
+  flex-direction: column; /* Keep labels and inputs stacked vertically */
+  align-items: left; /* Align items vertically */
+  margin-bottom: 15px; /* Spacing between form groups */
+}
+
+.input-group label {
+  margin-bottom: 10px; /* Spacing between form groups */
+}
+
+.input-group button {
+  margin-bottom: 10px; /* Spacing between form groups */
+}
+
+.sellprice1 {
+  display: flex; /* Flexbox to align items inside this div */
+  flex-direction: column; /* Keep labels and inputs stacked vertically */
+  margin-left: 5px; /* Add some space between the label and the sell price section */
+  font-size: 14px;
+}
+
+.sell {
+  display: flex; /* Flexbox to align items inside this div */
+  margin-left: 20px; /* Add some space between the label and the sell price section */
+  font-size: 14px;
+}
+
+.selll {
+  display: flex; /* Flexbox to align items inside this div */
+
+  font-size: 14px;
+}
+
+.sellprice label {
+  display: flex;
+  min-width: 130px;
+  height: 20px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  vertical-align: middle;
+  font-size: 14px; /* Set the desired font size */
+}
+
+.sellprice input {
+  display: flex;
+  width: 250px;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  box-sizing: border-box;
+}
+
+/* Fixing the header and product list in place at the top right */
+.fixed-product-header {
+  position: fixed;
+  top: 20px; /* Adjust this value for vertical positioning */
+  right: 460px; /* Aligns it to the right side of the screen */
+  background-color: white; /* Optional: to give a background for better visibility */
+  z-index: 100; /* Ensures it stays above other elements */
+  padding: 10px; /* Adds spacing around the text */
+  border: 1px solid #ccc; /* Optional: to give it a bordered box */
+}
+
+.productList {
+  position: fixed;
+  top: 60px; /* Position it below the header */
+  right: 420px; /* Aligns it to the right, same as the header */
+  max-height: 400px; /* Limit the height of the product list, adjust as needed */
+  overflow-y: auto; /* Enables scrolling within the product list */
+  background-color: white; /* Optional: to keep a clean look */
+  z-index: 99; /* Slightly lower than the header */
+  padding: 10px; /* Adds padding inside the box */
+  border: 1px solid #ccc; /* Optional */
 }

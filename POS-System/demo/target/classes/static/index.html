@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product List</title>
-    <link rel="stylesheet" href="/css/styless.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <!-- CSRF meta tags for Spring Security -->
     <meta name="_csrf" content="${_csrf.token}" />
     <meta name="_csrf_header" content="X-CSRF-TOKEN" />
@@ -15,11 +15,11 @@
       <div class="login-container">
         <h2>Login</h2>
         <form id="loginForm">
-          <div class="input-group">
+          <div class="login-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required />
           </div>
-          <div class="input-group">
+          <div class="login-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
           </div>
@@ -29,8 +29,9 @@
       </div>
     </div>
 
+
     <div class="product-containerHidden">
-    <h1>Product List</h>
+    <h1>Product Lists</h>
 
     <div class="action-buttons">
       <button class="addProductButton">Add Product</button>
@@ -55,19 +56,60 @@
       <input type="text" class="productQuantity" required />
 
       <label for="productCategory">Category:</label>
-      <input type="text" class="productCategory" required />
+      <select class="productCategory" required>
+        <option value="" disabled selected>Select a category</option>
+        <!-- <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+        <option value="home">Home & Living</option>
+        <option value="books">Books</option>
+        <option value="sports">Sports</option> -->
+      </select>
 
       <label for="productDescription">Description:</label>
       <textarea class="productDescription" rows="4" cols="50"></textarea>
 
-      <label for="costPrice">Cost Price:</label>
-      <input type="text" class="costPrice" required />
+      <div class="input-group">
+        <div class="addButton">
+        <label for="sellingPrice">Selling Price:</label>
+        <button type="submit" class="moreButton">+</button>
+      </div>
+        <div class="sellprice" id="sellprice1">
+          
+          <div class="selll">
+          <label for="sellingPrice1">Sell Price 1:</label>
+          <input type="text" class="sellingPrice" id="sellingPrice1" required />
+          </div>
 
-      <label for="sellingPrice">Selling Price:</label>
-      <input type="text" class="sellingPrice" required />
+          <div class="sell">
+          <label for="minQuantity1">Minimum Quantity:</label>
+          <input type="text" class="minQuantity" id="minQuantity1" required />
+          </div>
+
+         <div class="sell">
+          <label for="maxQuantity1">Maximum Quantity:</label>
+          <input type="text" class="maxQuantity" id="maxQuantity1" required />
+         </div>
+
+         <div class="sell">
+          <label for="effectiveDate1">Effective Date:</label>
+          <input type="date" class="effectiveDate" id="effectiveDate1" required />
+         </div>
+
+         <div class="sell">
+          <label for="expiryDate1">Expiry Date:</label>
+          <input type="date" class="expiryDate" id="expiryDate1" required />
+          </div>
+
+        </div>
+      </div>
 
       <label for="isActive">Is Active:</label>
-      <input type="boolean" class="isActive" required />
+      <select id="isActive" class="isActive" required>
+        <option value="" disabled selected>Select a status</option>
+        <option value="true">True</option>
+        <option value="false">False</option>
+      </select>
+      
 
       <label for="vendor">Vendor ID:</label>
       <input type="text" class="vendorId" required />
@@ -80,14 +122,17 @@
     </form>
 
     <div class="response"></div>
-     
-    <h2>Products</h2>
+
+
+    <h2 class="fixed-product-header">Products</h2>
     <div class="productList"></div>
-
-  </div>
     
+     
+  </div>
 
-
+  
     <script src="app.js"></script>
+    <script src="login.js"></script>
+    <script src="AddProduct.js"></script>
   </body>
 </html>

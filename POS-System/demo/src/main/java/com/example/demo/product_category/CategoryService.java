@@ -1,9 +1,11 @@
 package com.example.demo.product_category;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.product.ProductRepository;
+import com.example.demo.vendor.Vendor;
 
 @Service
 public class CategoryService {
@@ -15,6 +17,10 @@ public class CategoryService {
       ProductRepository productRepository) {
     this.categoryRepository = categoryRepository;
     this.productRepository = productRepository;
+  }
+
+  public Optional<Category> findById(Long id) {
+    return categoryRepository.findById(id);
   }
 
   public List<Category> getCategories() {

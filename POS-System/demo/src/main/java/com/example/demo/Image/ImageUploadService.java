@@ -31,7 +31,7 @@ public class ImageUploadService {
     }
 
     // Use the productCode as the file name and keep the extension
-    String newFileName = productCode + fileExtension;
+    String newFileName = productCode + "." + fileExtension;
 
     // Define the path to save the file
     Path path = Paths.get(uploadDir + File.separator + newFileName);

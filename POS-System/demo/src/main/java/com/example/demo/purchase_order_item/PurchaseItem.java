@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import com.example.demo.product.Product;
 import com.example.demo.purchase_order.PurchaseOrder;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "purchase_item")

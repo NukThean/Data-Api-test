@@ -1,0 +1,11 @@
+http://localhost:8080/index.html
+http://localhost:8080/api/pos/product
+http://localhost:8080/api/pos/product/price
+http://localhost:8080/api/purchase/order
+http://localhost:8080/api/purchase/order/item
+http://localhost:8080/api/pos/product/price
+http://localhost:8080/api/pos/product/category
+http://localhost:8080/api/pos/vendor
+http://localhost:8080/api/pos/user
+http://localhost:8080/api/pos/user/login
+http://localhost:8080/api/pos/imageUpload

@@ -1,0 +1,34 @@
+Date : 2024-10-19 17:16:33
+Directory : d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo
+Total : 7 files,  116 codes, 38 comments, 47 blanks, all 201 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |          7 |        116 |         38 |         47 |        201 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                  | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                     |          7 |        116 |         38 |         47 |        201 |
+| Security                                                                                              |          2 |         38 |         24 |         17 |         79 |
+| purchase_order_item                                                                                   |          1 |         -1 |          0 |          0 |         -1 |
+| user                                                                                                  |          4 |         79 |         14 |         30 |        123 |
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                              | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo\Security\CsrfHeaderFilter.java        | Java     |         19 |          1 |          8 |         28 |
+| d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo\Security\SecurityConfig.java          | Java     |         19 |         23 |          9 |         51 |
+| d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo\purchase_order_item\PurchaseItem.java | Java     |         -1 |          0 |          0 |         -1 |
+| d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo\user\LoginRequest.java                | Java     |         29 |          1 |         13 |         43 |
+| d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo\user\UserController.java              | Java     |         20 |          3 |          7 |         30 |
+| d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo\user\UserRepository.java              | Java     |          1 |          0 |          1 |          2 |
+| d:\Data-Api-test\POS-System\demo\src\main\java\com\example\demo\user\UserService.java                 | Java     |         29 |         10 |          9 |         48 |
+| Total                                                                                                 |          |        116 |         38 |         47 |        201 |
++-------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
