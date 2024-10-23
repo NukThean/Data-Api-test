@@ -1,3 +1,6 @@
+const loginWrapper = document.querySelector(".login-wrapper");
+const productContainer = document.querySelector(".product-container");
+
 //-------------------------------------------// Function to fetch the CSRF token from the server via a GET request
 async function fetchCsrfToken() {
   const response = await fetch("http://localhost:8080/api/pos/user/login", {
@@ -45,12 +48,8 @@ document
 
       if (response.ok) {
         console.log("Login successful");
-        const LoginContainer = document.querySelector(".login-container");
-        LoginContainer.className = "login-containerHidden";
-        const productContainer = document.querySelector(
-          ".product-containerHidden"
-        );
-        productContainer.className = "product-container";
+        loginWrapper.classList.add("hidden");
+        productContainer.classList.remove("hidden");
         // Redirect to dashboard or other actions after successful login
         //window.location.href = "/dashboard"; // Example redirect
       } else {

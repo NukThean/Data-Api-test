@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +23,14 @@ public class ProductController {
     this.productService = productService;
   }
 
+  // @GetMapping
+  // public List<Product> getProducts() {
+  // return productService.getProducts();
+  // }
+
   @GetMapping
-  public List<Product> getProducts() {
-    return productService.getProducts();
+  public List<Product> getActiveProducts() {
+    return productService.getActiveProducts();
   }
 
   // @GetMapping
@@ -45,10 +51,20 @@ public class ProductController {
     return ResponseEntity.ok("getProduct endpoint is working.");
   }
 
-  @DeleteMapping(path = "{productId}")
-  public void deleteProduct(@PathVariable("productId") long productId) {
-    productService.deleteProduct(productId);
-  }
+  // @DeleteMapping(path = "{productId}")
+  // public void deleteProduct(@PathVariable("productId") long productId) {
+  // productService.deleteProduct(productId);
+  // }
 
+  // @PutMapping(path = "{productId}")
+  // public void softDeleteProduct(@PathVariable("productId" long productId){
+  // productService.softDeleteProduct(productId)
+  // }
+
+  @PutMapping(path = "/soft-delete/{productId}")
+  public ResponseEntity<Void> softDeleteProduct(@PathVariable("productId") Long productId) {
+    productService.softDeleteProduct(productId);
+    return ResponseEntity.noContent().build();
+  }
 
 }

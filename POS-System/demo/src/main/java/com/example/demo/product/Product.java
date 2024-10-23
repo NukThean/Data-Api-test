@@ -14,6 +14,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import com.example.demo.vendor.Vendor;
@@ -71,11 +72,14 @@ public class Product {
   @JoinColumn(name = "vendor_id", nullable = true) // Foreign key in the product table
   private Vendor vendor;
 
+  @Column(name = "deleted_at")
+  private LocalDateTime deletedAt;
+
   public Product() {}
 
   public Product(Long id, String code, String name, Integer quantity, Category category,
       String description, List<SalePrice> salePrices, String image, Date createdAt, Date updatedAt,
-      boolean isActive, Vendor vendor) {
+      boolean isActive, Vendor vendor, LocalDateTime deletedAt) {
     this.id = id;
     this.code = code;
     this.name = name;
@@ -88,11 +92,12 @@ public class Product {
     this.updatedAt = updatedAt;
     this.isActive = isActive;
     this.vendor = vendor;
+    this.deletedAt = deletedAt;
   }
 
   public Product(String code, String name, Integer quantity, Category category, String description,
       List<SalePrice> salePrices, String image, Date createdAt, Date updatedAt, boolean isActive,
-      Vendor vendor) {
+      Vendor vendor, LocalDateTime deletedAt) {
     this.code = code;
     this.name = name;
     this.quantity = quantity;
@@ -104,6 +109,7 @@ public class Product {
     this.updatedAt = updatedAt;
     this.isActive = isActive;
     this.vendor = vendor;
+    this.deletedAt = deletedAt;
   }
 
   public Long getId() {
@@ -202,11 +208,19 @@ public class Product {
     this.vendor = vendor;
   }
 
+  public LocalDateTime getdeletedAt() {
+    return deletedAt;
+  }
+
+  public void setdeletedAt(LocalDateTime deletedAt) {
+    this.deletedAt = deletedAt;
+  }
+
   @Override
   public String toString() {
     return "Product [id=" + id + ", name=" + name + ", quantity=" + quantity + ", category="
         + category + ", description=" + description + ", salePrice=" + salePrices + ", image="
         + image + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", isActive=" + isActive
-        + ", vendor=" + vendor + "]";
+        + ", vendor=" + vendor + "deletedAt=" + deletedAt + "]";
   }
 }

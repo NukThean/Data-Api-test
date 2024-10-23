@@ -10,6 +10,7 @@ import com.example.demo.sale_price.SalePriceRepository;
 import com.example.demo.sale_price.SalePriceRequest;
 import com.example.demo.vendor.Vendor;
 import com.example.demo.vendor.VendorRepository;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -44,8 +45,6 @@ public class ProductService {
     Category category = categoryRepository.findById(productRequest.getCategoryId())
         .orElseThrow(() -> new RuntimeException("Category not found"));
 
-
-
     // Get current date for createdAt and updatedAt fields
     Date currentDate = new Date();
 
@@ -53,7 +52,7 @@ public class ProductService {
     Product product = new Product(productRequest.getProductCode(), productRequest.getProductName(),
         productRequest.getQuantity(), category, productRequest.getDescription(), null,
         productRequest.getImageUrl(), currentDate, currentDate, productRequest.getIsActive(),
-        vendor);
+        vendor, null);
 
     // Save the product
     productRepository.save(product);
@@ -69,14 +68,30 @@ public class ProductService {
     }
   }
 
-
-  public void deleteProduct(Long productId) {
-    boolean exists = productRepository.existsById(productId);
-    if (!exists) {
-      throw new IllegalStateException("Product with id " + productId + " does not exists");
-    }
-    productRepository.deleteById(productId);
+  public List<Product> getActiveProducts() {
+    return productRepository.findAllActive();
   }
+
+  public Product getActiveProduct(Long productId) {
+    return productRepository.findById(productId)
+        .orElseThrow(() -> new RuntimeException("Product not found"));
+  }
+
+  public void softDeleteProduct(Long productId) {
+    Product product = productRepository.findById(productId)
+        .orElseThrow(() -> new RuntimeException("Product not found"));
+    product.setdeletedAt(LocalDateTime.now());
+    productRepository.save(product);
+  }
+
+
+  // public void deleteProduct(Long productId) {
+  // boolean exists = productRepository.existsById(productId);
+  // if (!exists) {
+  // throw new IllegalStateException("Product with id " + productId + " does not exists");
+  // }
+  // productRepository.deleteById(productId);
+  // }
 }
 
 

@@ -1,9 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
-  document;
-  const productForm = document.querySelector(".productForm"); // Define the form element
-  const moreButton = document.querySelector(".moreButton");
-  const registerButton = document.querySelector(".registerButton");
+const productForm = document.querySelector(".product-form"); // Define the form element
+const moreButton = document.querySelector(".moreButton");
+const registerButton = document.querySelector(".registerButton");
 
+document.addEventListener("DOMContentLoaded", function () {
   populateCategorys();
 
   // Add event listener for 'click' event
@@ -93,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
         effectiveDate,
         expiryDate,
       });
-      console.log("what the hell");
     }
 
     // Prepare product data object

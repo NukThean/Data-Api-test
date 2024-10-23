@@ -1,12 +1,26 @@
+const productForm = document.querySelector(".product-form");
+
+const productList = document.querySelector(".product-list");
+
+const addProductBtn = document.querySelector(".action-buttons .add");
+const deleteProductBtn = document.querySelectorAll(".delete");
+
 function fetchProducts() {
   fetch("api/pos/product")
     .then((response) => response.json())
     .then((data) => {
-      const productList = document.querySelector(".productList");
       productList.innerHTML = "";
       data.forEach((product) => {
         const div = document.createElement("div");
-        div.innerHTML = `ID: ${product.id}, Name: ${product.name}`;
+        div.innerHTML = `<div class="product-card">
+          <div class="product-content">
+            <span class="product-code">${product.code}</span>
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+          </div>
+
+          <button class="btn delete">Delete</button>
+        </div>`;
         productList.appendChild(div);
       });
     })
@@ -15,35 +29,12 @@ function fetchProducts() {
 // Fetch students on page load
 window.onload = fetchProducts;
 
-document
-  .querySelector(".addProductButton")
-  .addEventListener("click", function () {
-    const productForm = document.querySelector(".productFormhidden");
-    productForm.className = "productForm";
-  });
+addProductBtn.addEventListener("click", function () {
+  productForm.classList.toggle("hidden");
+});
 
-document
-  .querySelector(".deleteProductButton")
-  .addEventListener("click", function () {
-    const productForm = document.querySelector(".deleteFormhidden");
-    productForm.className = "deleteForm";
+deleteProductBtn.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    console.log(e.target);
   });
-
-// Handle delete submission
-document
-  .querySelector(".deleteFormhidden")
-  .addEventListener("submit", function (event) {
-    fetch(
-      "/api/pos/product/" + document.querySelector(".deleteproductId").value,
-      {
-        method: "DELETE",
-      }
-    ).then((response) => {
-      if (response.ok) {
-        fetchProducts(); // Refresh student list after successful delete
-      } else {
-        console.error("Failed to delete product");
-      }
-    });
-    event.preventDefault(); // Prevent form from submitting normally
-  });
+});

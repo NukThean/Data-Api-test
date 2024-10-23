@@ -33,6 +33,7 @@ public class ProductRequest {
   @JsonProperty("salePrice")
   private List<SalePriceRequest> salePrices;
 
+
   public String getProductCode() {
     return productCode;
   }

@@ -33,13 +33,14 @@ public class CorsConfig {
     var urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
     var corsConfiguration = new CorsConfiguration();
     corsConfiguration.setAllowCredentials(true);
-    corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:4200"));
+    corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173")); // Allow these server to
+                                                                           // work with api
     corsConfiguration.setAllowedHeaders(List.of(ORIGIN, ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE,
-        ACCEPT, AUTHORIZATION, X_REQUESTED_WITH, ACCESS_CONTROL_REQUEST_METHOD,
+        ACCEPT, AUTHORIZATION, X_REQUESTED_WITH, ACCESS_CONTROL_REQUEST_METHOD, "X-CSRF-Token",
         ACCESS_CONTROL_REQUEST_HEADERS, ACCESS_CONTROL_ALLOW_CREDENTIALS));
     corsConfiguration.setExposedHeaders(List.of(ORIGIN, ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE,
         ACCEPT, AUTHORIZATION, X_REQUESTED_WITH, ACCESS_CONTROL_REQUEST_METHOD,
-        ACCESS_CONTROL_REQUEST_HEADERS, ACCESS_CONTROL_ALLOW_CREDENTIALS));
+        ACCESS_CONTROL_REQUEST_HEADERS, ACCESS_CONTROL_ALLOW_CREDENTIALS, "X-CSRF-Token"));
     corsConfiguration.setAllowedMethods(
         List.of(GET.name(), POST.name(), PUT.name(), PATCH.name(), DELETE.name(), OPTIONS.name()));
     urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
